@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+
+
+.bg-hero {
+    background-image: url('../../public/images/herosection.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
