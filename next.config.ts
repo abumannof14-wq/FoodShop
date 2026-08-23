@@ -19,6 +19,7 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "static.jow.fr",
       },
+      
     ],
   },
 };

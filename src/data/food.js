@@ -40,3 +40,4 @@ export const foods = [
     price: 45
   }
 ];
+
