@@ -10,9 +10,7 @@ const OrganicFood = () => {
                 <p>From nature to your table</p>
                 <h3 className="text-green-400 text-3xl">Health Starts With Organic Food</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ullamcorper convallis fermentum.</p>
-
-                <div className="max-w-7xl m-auto">
-                    <div className="grid grid-cols-4 gap-10 gap-y-12 mt-16 m-auto">
+                    <div className="grid grid-cols-4 gap-10 mt-16 m-auto max-w-7xl m-auto">
                         {foods.map((food, index) => (
                             <div key={index} className="w-[130px]">
                                 <div className="relative w-[110px] h-[110px] mx-auto">
@@ -26,7 +24,6 @@ const OrganicFood = () => {
                             </div>
                         ))}
                     </div>
-                </div>
             </div >
         </>
     )

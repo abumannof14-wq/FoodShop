@@ -12,14 +12,10 @@ const Navigation = () => {
           <Image src={Logo} alt="Logo" width={174} />
         </div>
         <div className="flex gap-10 text-white  ">
-          <Link href="/">
-            Home
-          </Link>
-          <Link href="/about">
-            About
-          </Link>
-          <Link href="/products">
-            Products
+          <Link href="/">Home</Link>
+          <Link href="/about">About</Link>
+          <Link href="/category">
+            Category
           </Link>
           <Link href="/food">
             Food
