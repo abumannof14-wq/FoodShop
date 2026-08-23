@@ -15,10 +15,8 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  // "$5" kabi matndan raqamni to'g'ri ajratib olamiz
   const parsePrice = (price) => parseFloat(String(price).replace(/[^0-9.]/g, '')) || 0;
 
-  // Savatga qo'shish
   const addToCart = (product, variant, quantity) => {
     const unitPrice = parsePrice(product.price);
     const id = `${product.id}-${variant}`;
@@ -39,20 +37,18 @@ export const CartProvider = ({ children }) => {
           product,
           variant,
           quantity,
-          unitPrice, // <-- endi bitta dona narxi saqlanadi, jami narx emas
+          unitPrice, 
         },
       ];
     });
 
-    setIsCartOpen(true); // Savatni ochish
+    setIsCartOpen(true); 
   };
 
-  // Savatdan o'chirish
   const removeFromCart = (id) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  // Miqdorni o'zgartirish
   const updateQuantity = (id, quantity) => {
     if (quantity <= 0) {
       removeFromCart(id);
@@ -65,7 +61,6 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  // Umumiy summa — har safar unitPrice * quantity orqali qayta hisoblanadi
   const subtotal = cartItems.reduce(
     (sum, item) => sum + item.unitPrice * item.quantity,
     0
