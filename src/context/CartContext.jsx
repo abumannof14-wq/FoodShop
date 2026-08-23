@@ -37,7 +37,7 @@ export const CartProvider = ({ children }) => {
           product,
           variant,
           quantity,
-          unitPrice,
+          unitPrice, 
         },
       ];
     });

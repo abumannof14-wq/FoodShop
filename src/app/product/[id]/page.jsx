@@ -6,6 +6,7 @@ export default async function ProductPage({ params }) {
   const resolvedParams = await params;
   
   const product = All.find((item) => String(item.id) === String(resolvedParams.id));
+  
 
   if (!product) {
     notFound();

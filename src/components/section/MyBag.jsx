@@ -55,7 +55,6 @@ const MyBag = () => {
             <div className="space-y-6">
               {cartItems.map((item) => (
                 <div key={item.id} className="flex gap-4 pb-6 border-b border-gray-100">
-                  {/* Rasm */}
                   <div className="w-20 h-20 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden shrink-0">
                     <Image
                       src={item.product.img || "/placeholder.png"}
@@ -66,7 +65,6 @@ const MyBag = () => {
                     />
                   </div>
 
-                  {/* Ma'lumotlar */}
                   <div className="flex-1 min-w-0">
                     <h3 className="font-semibold text-gray-900 text-sm truncate">
                       {item.product.name}
@@ -75,7 +73,6 @@ const MyBag = () => {
                       {item.variant}
                     </p>
 
-                    {/* Miqdor boshqaruvi */}
                     <div className="flex items-center gap-3 mt-3">
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity - 1)}
@@ -99,7 +96,6 @@ const MyBag = () => {
                     </div>
                   </div>
 
-                  {/* Narx va o'chirish */}
                   <div className="flex flex-col items-end justify-between">
                     <button
                       onClick={() => removeFromCart(item.id)}
@@ -117,7 +113,6 @@ const MyBag = () => {
           )}
         </div>
 
-        {/* Footer (Summa va tugma) */}
         {cartItems.length > 0 && (
           <div className="border-t border-gray-200 p-6 space-y-4">
             <div className="space-y-2 text-sm">
@@ -135,7 +130,6 @@ const MyBag = () => {
               </div>
             </div>
 
-            {/* PURCHASE tugmasi endi /checkout sahifasiga olib boradi */}
             <Link
               href="/checkout"
               onClick={() => setIsCartOpen(false)}

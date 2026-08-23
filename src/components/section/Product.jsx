@@ -24,7 +24,6 @@ const Product = ({ product }) => {
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-6xl">
-      {/* Breadcrumb */}
       <nav className="text-xs text-gray-500 uppercase tracking-wider mb-8 flex items-center gap-2">
         <span className="hover:text-emerald-600 cursor-pointer transition-colors">Home</span>
         <span>/</span>
@@ -34,7 +33,6 @@ const Product = ({ product }) => {
       </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Left side: Product Image */}
         <div className="relative bg-gradient-to-br from-emerald-50 to-white rounded-3xl aspect-square flex justify-center items-center overflow-hidden group border border-emerald-100/50">
           <Image
             src={product?.img || "/placeholder.png"}
@@ -45,7 +43,6 @@ const Product = ({ product }) => {
           />
         </div>
 
-        {/* Right side: Product Details */}
         <div className="flex flex-col justify-center">
           <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4 tracking-tight">
             {product?.name}
@@ -55,7 +52,6 @@ const Product = ({ product }) => {
             High-quality, naturally grown produce. Straight from the farm to your table.
           </p>
 
-          {/* Badges */}
           <div className="flex flex-wrap gap-3 mb-8">
             <span className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-full text-xs font-semibold border border-emerald-100">
               <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
@@ -67,13 +63,11 @@ const Product = ({ product }) => {
             </span>
           </div>
 
-          {/* Price (Unit Price) */}
           <div className="mb-8 flex items-baseline gap-2">
             <span className="text-4xl font-black text-emerald-600">{product?.price}</span>
             <span className="text-lg font-semibold text-gray-500">USD / kg</span>
           </div>
 
-          {/* Variants (Sizes) */}
           <div className="mb-8">
             <label className="block text-sm font-bold text-gray-700 mb-3 uppercase tracking-wide">Select Size</label>
             <div className="grid grid-cols-3 gap-3">
@@ -96,7 +90,6 @@ const Product = ({ product }) => {
             </div>
           </div>
 
-          {/* Quantity */}
           <div className="mb-6">
             <label className="block text-sm font-bold text-gray-700 mb-3 uppercase tracking-wide">Quantity</label>
             <div className="inline-flex items-center border-2 border-gray-200 rounded-2xl overflow-hidden bg-white shadow-sm">
@@ -116,13 +109,11 @@ const Product = ({ product }) => {
             </div>
           </div>
 
-          {/* Total Price — changes based on quantity */}
           <div className="mb-8 flex items-center justify-between bg-emerald-50/60 border border-emerald-100 rounded-2xl px-5 py-4">
             <span className="text-sm font-bold text-gray-600 uppercase tracking-wide">Total Price</span>
             <span className="text-2xl font-black text-emerald-700">${totalPrice}</span>
           </div>
 
-          {/* ADD TO CART Button */}
           <button 
             onClick={handleAddToCart}
             className="w-full bg-gray-900 hover:bg-emerald-700 text-white font-bold py-5 rounded-2xl transition-all duration-300 active:scale-[0.98] shadow-xl shadow-gray-200/50 hover:shadow-emerald-200/50 flex items-center justify-center gap-3 group text-lg"
