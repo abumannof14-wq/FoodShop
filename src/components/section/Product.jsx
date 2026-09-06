@@ -1,13 +1,12 @@
 "use client";
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { useCart } from '../../context/CartContext'; 
+import { useCart } from '../../context/CartContext';
 
 const Product = ({ product }) => {
-  const { addToCart } = useCart(); 
+  const { addToCart } = useCart();
 
   const [selectedVariant, setSelectedVariant] = useState('1 kg');
-  const [quantity, setQuantity] = useState(1);
 
   const variants = [
     { name: '1 kg' },
@@ -16,6 +15,7 @@ const Product = ({ product }) => {
   ];
 
   const unitPrice = parseFloat(String(product?.price).replace(/[^0-9.]/g, '')) || 0;
+  const quantity = parseInt(selectedVariant, 10) || 1;
   const totalPrice = (unitPrice * quantity).toFixed(2);
 
   const handleAddToCart = () => {
@@ -47,7 +47,7 @@ const Product = ({ product }) => {
           <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4 tracking-tight">
             {product?.name}
           </h1>
-          
+
           <p className="text-base text-gray-600 mb-6 leading-relaxed">
             High-quality, naturally grown produce. Straight from the farm to your table.
           </p>
@@ -78,8 +78,8 @@ const Product = ({ product }) => {
                     key={v.name}
                     onClick={() => setSelectedVariant(v.name)}
                     className={`relative px-4 py-3 rounded-xl text-sm font-bold transition-all duration-200 ${
-                      isSelected 
-                        ? 'bg-emerald-600 border-2 border-emerald-600 text-white shadow-md shadow-emerald-200' 
+                      isSelected
+                        ? 'bg-emerald-600 border-2 border-emerald-600 text-white shadow-md shadow-emerald-200'
                         : 'bg-white border-2 border-gray-200 text-gray-700 hover:border-emerald-300 hover:bg-emerald-50/30'
                     }`}
                   >
@@ -90,31 +90,12 @@ const Product = ({ product }) => {
             </div>
           </div>
 
-          <div className="mb-6">
-            <label className="block text-sm font-bold text-gray-700 mb-3 uppercase tracking-wide">Quantity</label>
-            <div className="inline-flex items-center border-2 border-gray-200 rounded-2xl overflow-hidden bg-white shadow-sm">
-              <button
-                onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                className="w-14 h-14 flex items-center justify-center text-gray-600 hover:bg-gray-50 active:bg-gray-100 transition-colors"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" /></svg>
-              </button>
-              <span className="w-16 text-center text-xl font-black text-gray-900 border-x-2 border-gray-200 py-2 select-none">{quantity}</span>
-              <button
-                onClick={() => setQuantity((q) => q + 1)}
-                className="w-14 h-14 flex items-center justify-center text-gray-600 hover:bg-gray-50 active:bg-gray-100 transition-colors"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
-              </button>
-            </div>
-          </div>
-
           <div className="mb-8 flex items-center justify-between bg-emerald-50/60 border border-emerald-100 rounded-2xl px-5 py-4">
             <span className="text-sm font-bold text-gray-600 uppercase tracking-wide">Total Price</span>
             <span className="text-2xl font-black text-emerald-700">${totalPrice}</span>
           </div>
 
-          <button 
+          <button
             onClick={handleAddToCart}
             className="w-full bg-gray-900 hover:bg-emerald-700 text-white font-bold py-5 rounded-2xl transition-all duration-300 active:scale-[0.98] shadow-xl shadow-gray-200/50 hover:shadow-emerald-200/50 flex items-center justify-center gap-3 group text-lg"
           >

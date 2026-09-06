@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-// ✅ 1. SHU IKKITA QATORNI QO'SHING:
 import { CartProvider } from "../context/CartContext";
+import { LikeProvider } from "../context/LikeContext"; // 👈 to'g'ri nom
 import MyBag from "../components/section/MyBag";
 
 const geistSans = Geist({
@@ -17,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FoodShop - Organic", // ✅ Nomni o'zgartirib qo'ydim
+  title: "FoodShop - Organic",
   description: "Tabiiy va sifatli mahsulotlar",
 };
 
@@ -28,17 +27,16 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="uz" // ✅ O'zbek tiliga o'zgartirdim
+      lang="uz"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        
-        {/* ✅ 2. MUHIM: {children} va <MyBag /> albatta CartProvider ichida bo'lishi shart! */}
-        <CartProvider>
-          {children}
-          <MyBag />
-        </CartProvider>
-
+        <LikeProvider>
+          <CartProvider>
+            {children}
+            <MyBag />
+          </CartProvider>
+        </LikeProvider>
       </body>
     </html>
   );
