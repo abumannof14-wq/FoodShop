@@ -1,29 +1,31 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link"; 
 import { All } from "../../data/vegetables";
+import { useLikes } from "../../context/LikeContext";
 
 const SectionMap = () => {
-  const [likedItems, setLikedItems] = useState({});
-
-  const toggleLike = (id) => {
-    setLikedItems((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
+  const { toggleLike, isLiked } = useLikes();
 
   return (
     <div className="min-h-screen bg-gray-50/50 px-4 py-16">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1200px] mx-auto">
         {All.map((product, index) => {
           const itemId = product.id ?? index;
-          const isLiked = likedItems[itemId];
+          const liked = isLiked(itemId);
           
           return (
             <div key={itemId} className="group relative bg-white/80 backdrop-blur-xl rounded-[2rem] border border-white/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_-10px_rgba(16,185,129,0.15)] hover:border-emerald-200/60 transition-all duration-500 ease-out hover:-translate-y-2 overflow-hidden">
               
               <div className="relative h-64 flex items-center justify-center overflow-hidden bg-gradient-to-b from-emerald-50/50 to-white">
-                <button onClick={() => toggleLike(itemId)} className="absolute top-5 right-5 z-20 p-3 rounded-full backdrop-blur-md border shadow-sm transition-all duration-300 active:scale-95 hover:scale-110 bg-white/90 border-gray-100 text-gray-400 hover:text-red-500">
-                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill={isLiked ? "currentColor" : "none"} stroke="currentColor" strokeWidth={isLiked ? 0 : 2} className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>
+                <button 
+                  onClick={() => toggleLike(product)} 
+                  className="absolute top-5 right-5 z-20 p-3 rounded-full backdrop-blur-md border shadow-sm transition-all duration-300 active:scale-95 hover:scale-110 bg-white/90 border-gray-100 text-gray-400 hover:text-red-500"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill={liked ? "currentColor" : "none"} stroke="currentColor" strokeWidth={liked ? 0 : 2} className="w-5 h-5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                  </svg>
                 </button>
                 <Image src={product.img} alt={product.name} width={180} height={180} className="relative z-10 w-44 h-44 object-contain drop-shadow-[0_15px_15px_rgba(0,0,0,0.08)] transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:scale-115 group-hover:-rotate-2" priority={index < 3} />
               </div>
@@ -59,5 +61,3 @@ const SectionMap = () => {
 };
 
 export default SectionMap;
-
-
